@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVCGridDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BindingType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Index" />
+          </Key>
+          <Property Name="Index" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" />
+          <Property Name="ISBN" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="varchar" MaxLength="250" />
+          <Property Name="Author" Type="varchar" MaxLength="250" />
+          <Property Name="Imprint" Type="varchar" MaxLength="250" />
+          <Property Name="PublisherGroup" Type="varchar" MaxLength="250" />
+          <Property Name="Volume" Type="bigint" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="RRP" Type="varchar" MaxLength="50" />
+          <Property Name="ASP" Type="varchar" MaxLength="50" />
+          <Property Name="BindingTypeId" Type="int" />
+          <Property Name="PublDate" Type="datetime" />
+          <Property Name="ProductClass" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Book_BindingType">
+          <End Role="BindingType" Type="Self.BindingType" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BindingType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BindingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVCGridDemoModelStoreContainer">
+          <EntitySet Name="BindingType" EntityType="Self.BindingType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Book_BindingType" Association="Self.FK_Book_BindingType">
+            <End Role="BindingType" EntitySet="BindingType" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCGridDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BindingType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Book_BindingType" FromRole="BindingType" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Index" />
+          </Key>
+          <Property Name="Index" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Imprint" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PublisherGroup" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Volume" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RRP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ASP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BindingTypeId" Type="Int32" />
+          <Property Name="PublDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BindingType" Relationship="Self.FK_Book_BindingType" FromRole="Book" ToRole="BindingType" />
+        </EntityType>
+        <Association Name="FK_Book_BindingType">
+          <End Role="BindingType" Type="Self.BindingType" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BindingType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BindingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVCGridDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BindingTypes" EntityType="Self.BindingType" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <AssociationSet Name="FK_Book_BindingType" Association="Self.FK_Book_BindingType">
+            <End Role="BindingType" EntitySet="BindingTypes" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCGridDemoModelStoreContainer" CdmEntityContainer="MVCGridDemoEntities">
+          <EntitySetMapping Name="BindingTypes">
+            <EntityTypeMapping TypeName="MVCGridDemoModel.BindingType">
+              <MappingFragment StoreEntitySet="BindingType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="MVCGridDemoModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Imprint" ColumnName="Imprint" />
+                <ScalarProperty Name="PublisherGroup" ColumnName="PublisherGroup" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="RRP" ColumnName="RRP" />
+                <ScalarProperty Name="ASP" ColumnName="ASP" />
+                <ScalarProperty Name="BindingTypeId" ColumnName="BindingTypeId" />
+                <ScalarProperty Name="PublDate" ColumnName="PublDate" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
