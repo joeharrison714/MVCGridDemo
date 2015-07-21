@@ -15,7 +15,7 @@ namespace MVCGridDemo.Model
         Author,
         Imprint,
         PublisherGroup,
-        Volumn,
+        Volume,
         BindingTypeId,
         PublicationDate
     }

@@ -14,7 +14,12 @@ namespace ConsoleTest
             BookService bookService = new BookService();
 
             int totalRecords;
-            bookService.GetBooks(out totalRecords, null, null, MVCGridDemo.Model.BookOrderBy.Author, false);
+            var books = bookService.GetBooks(out totalRecords, null, null, MVCGridDemo.Model.BookOrderBy.Author, false);
+
+            foreach (var book in books)
+            {
+                Console.WriteLine(book.Title);
+            }
         }
     }
 }
