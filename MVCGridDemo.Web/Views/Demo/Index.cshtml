@@ -14,8 +14,16 @@
     </div>
 </div>
 
-<button class="btn btn-default" data-mvcgrid-type="export" data-mvcgrid-name="BookGrid">
+@Html.Partial("_MVCGridToolbar", new MVCGrid.Web.Models.MVCGridToolbarModel()
+{
+    MVCGridName = "BookGrid",
+    ColumnVisibility=true,
+    Export=true,
+    PageSize=true
+})
+
+@*<button class="btn btn-default" data-mvcgrid-type="export" data-mvcgrid-name="BookGrid">
     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Export
-</button>
+</button>*@
 
 @Html.MVCGrid("BookGrid")

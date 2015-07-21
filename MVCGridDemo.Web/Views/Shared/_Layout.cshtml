@@ -38,6 +38,15 @@
     @Scripts.Render("~/bundles/jquery")
     <script src="~/MVCGridHandler.axd/script.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+        $(function () {
+            $('li').click(function (event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

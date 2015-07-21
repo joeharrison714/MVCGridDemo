@@ -20,18 +20,31 @@ namespace MVCGridDemo.Web
             
             MVCGridDefinitionTable.Add("BookGrid", new MVCGridBuilder<Book>()
                 .WithAuthorizationType(AuthorizationType.AllowAnonymous)
-                .WithPaging(true, 10)
+                .WithPaging(true, 10, true, 100)
                 .WithSorting(true, "Title")
                 .WithFiltering(true)
                 .AddColumns(cols =>
                 {
-                    cols.Add("Position", "Position", m => m.Position.ToString()).WithSorting(true);
-                    cols.Add("Title", "Title", m => m.Title).WithSorting(true).WithFiltering(true);
-                    cols.Add("Author", "Author", m => m.Author).WithSorting(true);
-                    cols.Add("ISBN", "ISBN", m => m.ISBN).WithSorting(true);
-                    cols.Add("PublisherGroup", "Publisher Group", m => m.PublisherGroup).WithSorting(true);
-                    cols.Add("Volume", "Volume", m => m.Volume.ToString("N0")).WithSorting(true);
-                    cols.Add("PublicationDate", "Publ. Date", m => m.PublicationDate.ToShortDateString()).WithSorting(true);
+                    cols.Add("Position", "Position", m => m.Position.ToString())
+                        .WithSorting(true).WithVisibility(true, true);
+
+                    cols.Add("Title", "Title", m => m.Title)
+                        .WithSorting(true).WithFiltering(true).WithVisibility(true, true);
+
+                    cols.Add("Author", "Author", m => m.Author)
+                        .WithSorting(true).WithVisibility(true, true);
+
+                    cols.Add("ISBN", "ISBN", m => m.ISBN)
+                        .WithSorting(true).WithVisibility(false, true);
+
+                    cols.Add("PublisherGroup", "Publisher Group", m => m.PublisherGroup)
+                        .WithSorting(true).WithVisibility(false, true);
+
+                    cols.Add("Volume", "Volume", m => m.Volume.ToString("N0"))
+                        .WithSorting(true).WithVisibility(false, true);
+
+                    cols.Add("PublicationDate", "Publ. Date", m => m.PublicationDate.ToShortDateString())
+                        .WithSorting(true).WithVisibility(false, true); ;
 
                     cols.Add("Edit", "Edit", m => m.Index.ToString()).WithSorting(false)
                         .WithValueTemplate("<a href='/edit/{Value}' class='btn btn-primary' role='button'>Edit</a>", false);
