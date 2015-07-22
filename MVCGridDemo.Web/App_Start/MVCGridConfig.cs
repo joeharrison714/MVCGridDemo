@@ -20,6 +20,8 @@ namespace MVCGridDemo.Web
             
             MVCGridDefinitionTable.Add("BookGrid", new MVCGridBuilder<Book>()
                 .WithAuthorizationType(AuthorizationType.AllowAnonymous)
+                .WithRenderingMode(RenderingMode.Controller)
+                .WithViewPath("~/Views/MVCGrid/_Custom.cshtml")
                 .WithSorting(true, "Title")
                 .WithPaging(true, 10, true, 100)
                 .WithFiltering(true)

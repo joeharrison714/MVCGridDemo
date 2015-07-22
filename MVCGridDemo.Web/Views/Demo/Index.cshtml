@@ -23,3 +23,32 @@
 })
 
 @Html.MVCGrid("BookGrid")
+
+
+@section head{
+    <style type="text/css">
+        table.customStyleTable {
+            width: 100%;
+        }
+            /*table.customStyleTable tr th{
+            background-color: blue;
+        }*/
+            table.customStyleTable tr:nth-child(odd) {
+                background-color: #fff;
+            }
+
+            table.customStyleTable tr:nth-child(even) {
+                background-color: #9cf;
+            }
+
+            table.customStyleTable thead th {
+                background: #fc9;
+            }
+
+        .pageItem {
+            display: inline;
+            float: left;
+            margin: 2px;
+        }
+    </style>
+}

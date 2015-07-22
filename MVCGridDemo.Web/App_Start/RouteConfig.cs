@@ -18,6 +18,13 @@ namespace MVCGridDemo.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                "MVCGrid",
+                "mvcgrid/{action}",
+                new { controller = "MVCGrid" },
+                new[] { "MVCGrid.Web" }
+            );
         }
     }
 }
