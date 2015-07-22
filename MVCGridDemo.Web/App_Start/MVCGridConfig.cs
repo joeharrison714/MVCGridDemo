@@ -20,10 +20,12 @@ namespace MVCGridDemo.Web
             
             MVCGridDefinitionTable.Add("BookGrid", new MVCGridBuilder<Book>()
                 .WithAuthorizationType(AuthorizationType.AllowAnonymous)
+                .WithSorting(true, "Title")
+                .WithPaging(true, 10, true, 100)
                 .AddColumns(cols =>
                 {
-                    cols.Add("Title", "Title", b => b.Title);
-                    cols.Add("Author", "Author", b => b.Author);
+                    cols.Add("Title", "Title", b => b.Title).WithSorting(true);
+                    cols.Add("Author", "Author", b => b.Author).WithSorting(true);
 
                     // Add your columns here
                     //cols.Add().WithColumnName("UniqueColumnName")
