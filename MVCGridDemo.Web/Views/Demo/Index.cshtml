@@ -5,4 +5,13 @@
 
 <h2>Books</h2>
 
+<div class="well">
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Title" data-mvcgrid-type="filter" data-mvcgrid-option="Title">
+        </div>
+        <button type="button" class="btn btn-default" data-mvcgrid-apply-filter="click">Apply</button>
+    </div>
+</div>
+
 @Html.MVCGrid("BookGrid")

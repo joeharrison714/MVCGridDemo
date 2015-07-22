@@ -22,13 +22,14 @@ namespace MVCGridDemo.Web
                 .WithAuthorizationType(AuthorizationType.AllowAnonymous)
                 .WithSorting(true, "Title")
                 .WithPaging(true, 10, true, 100)
+                .WithFiltering(true)
                 .AddColumns(cols =>
                 {
                     cols.Add("Position", "Position", m => m.Position.ToString())
                         .WithSorting(true);
 
                     cols.Add("Title", "Title", m => m.Title)
-                        .WithSorting(true);
+                        .WithSorting(true).WithFiltering(true);
 
                     cols.Add("Author", "Author", m => m.Author)
                         .WithSorting(true);
@@ -73,8 +74,10 @@ namespace MVCGridDemo.Web
 
                     var options = context.QueryOptions;
 
+                    string titleFilter = options.GetFilterString("Title");
+
                     int totalRecords;
-                    var results = bookService.GetBooks(out totalRecords, options.GetLimitOffset(), options.GetLimitRowcount(), options.SortColumnName, options.SortDirection == SortDirection.Dsc);
+                    var results = bookService.GetBooks(out totalRecords, titleFilter, options.GetLimitOffset(), options.GetLimitRowcount(), options.SortColumnName, options.SortDirection == SortDirection.Dsc);
 
                     return new QueryResult<Book>()
                     {
