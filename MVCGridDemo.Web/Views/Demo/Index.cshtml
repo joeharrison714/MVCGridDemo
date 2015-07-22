@@ -14,4 +14,12 @@
     </div>
 </div>
 
+@Html.Partial("_MVCGridToolbar", new MVCGrid.Web.Models.MVCGridToolbarModel()
+{
+    MVCGridName = "BookGrid",
+    ColumnVisibility = true,
+    Export = true,
+    PageSize = true
+})
+
 @Html.MVCGrid("BookGrid")

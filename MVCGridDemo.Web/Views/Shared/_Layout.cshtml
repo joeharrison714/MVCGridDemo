@@ -40,5 +40,12 @@
     <script src="~/MVCGridHandler.axd/script.js"></script>
     @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    $(function () {
+        $('li').click(function (event) {
+            event.stopPropagation();
+        });
+    });
+    </script>
 </body>
 </html>

@@ -26,26 +26,26 @@ namespace MVCGridDemo.Web
                 .AddColumns(cols =>
                 {
                     cols.Add("Position", "Position", m => m.Position.ToString())
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(true, true);
 
                     cols.Add("Title", "Title", m => m.Title)
-                        .WithSorting(true).WithFiltering(true);
+                        .WithSorting(true).WithFiltering(true).WithVisibility(true, true);
 
                     cols.Add("Author", "Author", m => m.Author)
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(true, true);
 
                     cols.Add("ISBN", "ISBN", m => m.ISBN)
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(false, true);
 
                     cols.Add("PublisherGroup", "Publisher Group", m => m.PublisherGroup)
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(false, true);
 
                     // Format Volume as Number
                     cols.Add("Volume", "Volume", m => m.Volume.ToString("N0"))
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(false, true);
 
                     cols.Add("PublicationDate", "Publ. Date", m => m.PublicationDate.ToShortDateString())
-                        .WithSorting(true);
+                        .WithSorting(true).WithVisibility(false, true);
 
                     // Use Value Template to format buttons
                     cols.Add("Edit", "Edit", m => m.Index.ToString()).WithSorting(false)
