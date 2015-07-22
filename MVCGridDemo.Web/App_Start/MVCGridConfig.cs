@@ -24,16 +24,44 @@ namespace MVCGridDemo.Web
                 .WithPaging(true, 10, true, 100)
                 .AddColumns(cols =>
                 {
-                    cols.Add("Title", "Title", b => b.Title).WithSorting(true);
-                    cols.Add("Author", "Author", b => b.Author).WithSorting(true);
+                    cols.Add("Position", "Position", m => m.Position.ToString())
+                        .WithSorting(true);
 
-                    // Add your columns here
-                    //cols.Add().WithColumnName("UniqueColumnName")
-                    //    .WithHeaderText("Any Header")
-                    //    .WithValueExpression(i => i.YourProperty); // use the Value Expression to return the cell text for this column
-                    //cols.Add().WithColumnName("UrlExample")
-                    //    .WithHeaderText("Edit")
-                    //    .WithValueExpression((i, c) => c.UrlHelper.Action("detail", "demo", new { id = i.Id }));
+                    cols.Add("Title", "Title", m => m.Title)
+                        .WithSorting(true);
+
+                    cols.Add("Author", "Author", m => m.Author)
+                        .WithSorting(true);
+
+                    cols.Add("ISBN", "ISBN", m => m.ISBN)
+                        .WithSorting(true);
+
+                    cols.Add("PublisherGroup", "Publisher Group", m => m.PublisherGroup)
+                        .WithSorting(true);
+
+                    // Format Volume as Number
+                    cols.Add("Volume", "Volume", m => m.Volume.ToString("N0"))
+                        .WithSorting(true);
+
+                    cols.Add("PublicationDate", "Publ. Date", m => m.PublicationDate.ToShortDateString())
+                        .WithSorting(true);
+
+                    // Use Value Template to format buttons
+                    cols.Add("Edit", "Edit", m => m.Index.ToString()).WithSorting(false)
+                        .WithValueTemplate("<a href='/edit/{Value}' class='btn btn-primary' role='button'>Edit</a>", false);
+
+                    cols.Add("Delete", "Delete", m => m.Index.ToString()).WithSorting(false)
+                        .WithValueTemplate("<a href='/edit/{Value}' class='btn btn-danger' role='button'>Delete</a>", false);
+
+
+                })
+                .WithRowCssClassExpression(b =>
+                {
+                    if (b.PublicationDate.Year >= (DateTime.Now.Year - 10))
+                    {
+                        return "success";
+                    }
+                    return "";
                 })
                 .WithRetrieveDataMethod((context) =>
                 {
