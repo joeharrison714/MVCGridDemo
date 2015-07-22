@@ -10,12 +10,12 @@ namespace MVCGridDemo.Services
 {
     public class BookService : IBookService
     {
-        public IEnumerable<Book> GetBooks(out int totalRecords, int? limitOffset, int? limitRowCount, BookOrderBy? orderBy, bool desc)
+        public IEnumerable<Book> GetBooks(out int totalRecords, int? limitOffset, int? limitRowCount, string orderByColumn, bool desc)
         {
-            return GetBooks(out totalRecords, null, limitOffset, limitRowCount, orderBy, desc);
+            return GetBooks(out totalRecords, null, limitOffset, limitRowCount, orderByColumn, desc);
         }
 
-        public IEnumerable<Book> GetBooks(out int totalRecords, string titleFilter, int? limitOffset, int? limitRowCount, BookOrderBy? orderBy, bool desc)
+        public IEnumerable<Book> GetBooks(out int totalRecords, string titleFilter, int? limitOffset, int? limitRowCount, string orderByColumn, bool desc)
         {
             List<Book> results = new List<Book>();
 
@@ -42,6 +42,14 @@ namespace MVCGridDemo.Services
                 //}
 
                 totalRecords = query.Count();
+
+                BookOrderBy? orderBy = null;
+
+                BookOrderBy tempOrderBy;
+                if (Enum.TryParse<BookOrderBy>(orderByColumn, true, out tempOrderBy))
+                {
+                    orderBy = tempOrderBy;
+                }
 
                 if (orderBy.HasValue)
                 {

@@ -9,7 +9,7 @@ namespace MVCGridDemo.Interfaces
 {
     public interface IBookService
     {
-        IEnumerable<Book> GetBooks(out int totalRecords, int? limitOffset, int? limitRowCount, BookOrderBy? orderBy, bool desc);
-        IEnumerable<Book> GetBooks(out int totalRecords, string titleFilter, int? limitOffset, int? limitRowCount, BookOrderBy? orderBy, bool desc);
+        IEnumerable<Book> GetBooks(out int totalRecords, int? limitOffset, int? limitRowCount, string orderBy, bool desc);
+        IEnumerable<Book> GetBooks(out int totalRecords, string titleFilter, int? limitOffset, int? limitRowCount, string orderBy, bool desc);
     }
 }
