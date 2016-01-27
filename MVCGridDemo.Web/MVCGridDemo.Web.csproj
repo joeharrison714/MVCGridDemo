@@ -46,8 +46,9 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MVCGrid">
-      <HintPath>..\packages\MVCGrid.Net.1.0.0.57\lib\net40\MVCGrid.dll</HintPath>
+    <Reference Include="MVCGrid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MVCGrid.Net.1.0.0.60\lib\net40\MVCGrid.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
