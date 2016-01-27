@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Books";
 }
 
 <h2>Index</h2>
@@ -21,9 +21,5 @@
     Export=true,
     PageSize=true
 })
-
-@*<button class="btn btn-default" data-mvcgrid-type="export" data-mvcgrid-name="BookGrid">
-    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Export
-</button>*@
 
 @Html.MVCGrid("BookGrid")

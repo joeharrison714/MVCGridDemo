@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MVCGridDemo.Web.Controllers
 {
-    public class DemoController : Controller
+    public class BooksController : Controller
     {
         // GET: Demo
         public ActionResult Index()
